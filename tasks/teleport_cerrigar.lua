@@ -14,6 +14,8 @@ local task = {
     debounce_timeout = 3
 }
 local function teleport_with_debounce()
+    local local_player = get_local_player()
+    if not local_player then return end
     if local_player:get_active_spell_id() == 186139 then
         task.status = status_enum['TELEPORTING']
     else
