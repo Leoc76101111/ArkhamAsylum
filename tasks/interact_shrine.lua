@@ -25,7 +25,7 @@ local get_closest_shrine = function ()
                 actor:is_interactable()
             then
                 local dist = utils.distance(local_player, actor)
-                if dist < 10 and (closest_dist == nil or dist < closest_dist) then
+                if dist < 15 and (closest_dist == nil or dist < closest_dist) then
                     closest_dist = dist
                     closest_shrine = actor
                 end
