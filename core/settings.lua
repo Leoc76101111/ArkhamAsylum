@@ -18,7 +18,8 @@ local settings = {
     party_mode = 0,
     confirm_delay = 5,
     exit_pit_delay = 10,
-    use_magoogle_tool = false
+    use_magoogle_tool = false,
+    check_distance = 10,
 }
 
 settings.get_keybind_state = function ()

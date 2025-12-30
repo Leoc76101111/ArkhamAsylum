@@ -16,7 +16,7 @@ local get_closest_enemies = function ()
     local local_player = get_local_player()
     if not local_player then return end
     local player_pos = get_player_position()
-    local enemies = target_selector.get_near_target_list(player_pos, 15)
+    local enemies = target_selector.get_near_target_list(player_pos, settings.check_distance)
     local closest_enemy, closest_enemy_dist
     local closest_elite, closest_elite_dist
     local closest_champ, closest_champ_dist
