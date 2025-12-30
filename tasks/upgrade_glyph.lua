@@ -8,7 +8,7 @@ local gui = require "gui"
 local status_enum = {
     IDLE = 'idle',
     UPGRADING = 'upgrading glyphs',
-    WALKING = 'walking to Awaken Glyphstone',
+    WALKING = 'walking to Awakened Glyphstone',
 }
 local task = {
     name = 'upgrade_glyph', -- change to your choice of task name
@@ -80,6 +80,7 @@ local upgrade_glyphs = function (glyphs)
     end
     -- nothing to upgrade
     tracker.glyph_done = true
+    task.status = status_enum['IDLE']
 end
 task.shouldExecute = function ()
     local should_execute = not utils.is_looting() and
@@ -114,7 +115,7 @@ task.Execute = function ()
     if settings.use_magoogle_tool and task.last_interaction_time == 1 then
         -- contact magoogle tool for boss killed
     end
-    if glyphs ~= nil and glyphs:size() > 0 then
+    if glyphs ~= nil and glyphs:size() > 0 and task.status == status_enum['UPGRADING'] then
         BatmobilePlugin.clear_target(plugin_label)
         task.status = status_enum['UPGRADING']
         upgrade_glyphs(glyphs)
@@ -122,6 +123,9 @@ task.Execute = function ()
         BatmobilePlugin.set_target(plugin_label, gizmo)
         BatmobilePlugin.move(plugin_label)
         task.status = status_enum['WALKING']
+    elseif gizmo ~= nil then
+        interact_object(gizmo)
+        task.status = status_enum['UPGRADING']
     end
 end
 
