@@ -66,6 +66,7 @@ local enter_portal = function (portal)
     BatmobilePlugin.reset(plugin_label)
     tracker.pit_start_time = get_time_since_inject()
     tracker.exit_trigger_time = nil
+    tracker.glyph_trigger_time = nil
     tracker.glyph_done = false
     task.interact_time = nil
     task.status = status_enum['ENTERING'] .. tostring(settings.pit_level)

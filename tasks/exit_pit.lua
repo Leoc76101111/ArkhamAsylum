@@ -7,7 +7,7 @@ local tracker = require 'core.tracker'
 local status_enum = {
     IDLE = 'idle',
     EXIT = 'exiting pit',
-    WAITING = 'waiting '
+    WAITING = 'waiting'
 }
 local task = {
     name = 'exit_pit', -- change to your choice of task name

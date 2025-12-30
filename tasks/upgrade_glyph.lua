@@ -9,6 +9,7 @@ local status_enum = {
     IDLE = 'idle',
     UPGRADING = 'upgrading glyphs',
     WALKING = 'walking to Awakened Glyphstone',
+    INTERACTING = 'interacting with Awakened Glyphstone',
 }
 local task = {
     name = 'upgrade_glyph', -- change to your choice of task name
@@ -79,8 +80,8 @@ local upgrade_glyphs = function (glyphs)
         end
     end
     -- nothing to upgrade
-    tracker.glyph_done = true
     task.status = status_enum['IDLE']
+    tracker.glyph_done = true
 end
 task.shouldExecute = function ()
     local should_execute = not utils.is_looting() and
@@ -112,10 +113,12 @@ task.Execute = function ()
     BatmobilePlugin.pause(plugin_label)
     local gizmo = utils.get_glyph_upgrade_gizmo()
     local glyphs = get_glyphs()
-    if settings.use_magoogle_tool and task.last_interaction_time == 1 then
+    if settings.use_magoogle_tool and tracker.glyph_trigger_time == nil then
         -- contact magoogle tool for boss killed
     end
-    if glyphs ~= nil and glyphs:size() > 0 and task.status == status_enum['UPGRADING'] then
+    if glyphs ~= nil and glyphs:size() > 0 and
+        tracker.glyph_trigger_time + 1 < get_time_since_inject()
+    then
         BatmobilePlugin.clear_target(plugin_label)
         task.status = status_enum['UPGRADING']
         upgrade_glyphs(glyphs)
@@ -123,9 +126,15 @@ task.Execute = function ()
         BatmobilePlugin.set_target(plugin_label, gizmo)
         BatmobilePlugin.move(plugin_label)
         task.status = status_enum['WALKING']
-    elseif gizmo ~= nil then
+    elseif gizmo ~= nil and tracker.glyph_trigger_time == nil then
+        tracker.glyph_trigger_time = get_time_since_inject()
+        BatmobilePlugin.clear_target(plugin_label)
         interact_object(gizmo)
-        task.status = status_enum['UPGRADING']
+        task.status = status_enum['INTERACTING']
+    elseif gizmo ~= nil then
+        BatmobilePlugin.clear_target(plugin_label)
+        interact_object(gizmo)
+        task.status = status_enum['INTERACTING']
     end
 end
 
