@@ -1,0 +1,11 @@
+local plugin_label = 'azmodan_farm'
+-- kept plugin label instead of waiting for update_tracker to set it
+
+local tracker = {
+    name        = plugin_label,
+    pit_start_time = get_time_since_inject(),
+    exit_trigger_time = nil,
+    glyph_done = false
+}
+
+return tracker
