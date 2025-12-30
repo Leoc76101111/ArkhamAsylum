@@ -32,9 +32,9 @@ end
 
 local task_files = {
     'teleport_cerrigar',
-    'alfred',
     'enter_pit',
     'upgrade_glyph',
+    'alfred',
     'exit_pit',
     'interact_shrine',
     'kill_monster',
