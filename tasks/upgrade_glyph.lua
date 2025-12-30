@@ -117,6 +117,7 @@ task.Execute = function ()
         -- contact magoogle tool for boss killed
     end
     if glyphs ~= nil and glyphs:size() > 0 and
+        tracker.glyph_trigger_time ~= nil and
         tracker.glyph_trigger_time + 1 < get_time_since_inject()
     then
         BatmobilePlugin.clear_target(plugin_label)
