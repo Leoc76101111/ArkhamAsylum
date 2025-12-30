@@ -1,5 +1,5 @@
 local plugin_label = 'arkham_asylum'
-local plugin_version = '0.0.2'
+local plugin_version = '0.0.3'
 
 local gui = {}
 
