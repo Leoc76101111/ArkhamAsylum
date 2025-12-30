@@ -16,28 +16,30 @@ local get_closest_enemies = function ()
     local local_player = get_local_player()
     if not local_player then return end
     local player_pos = get_player_position()
-    local enemies = target_selector.get_near_target_list(player_pos, settings.check_distance)
+    local enemies = target_selector.get_near_target_list(player_pos, 50)
     local closest_enemy, closest_enemy_dist
     local closest_elite, closest_elite_dist
     local closest_champ, closest_champ_dist
     local closest_boss, closest_boss_dist
     for _, enemy in pairs(enemies) do
         local dist = utils.distance(player_pos, enemy)
-        if closest_enemy_dist == nil or dist < closest_enemy_dist then
-            closest_enemy = enemy
-            closest_enemy_dist = dist
-        end
-        if enemy:is_elite() and
-            (closest_elite_dist == nil or dist < closest_elite_dist)
-        then
-            closest_elite = enemy
-            closest_elite_dist = dist
-        end
-        if enemy:is_champion() and
-            (closest_champ_dist == nil or dist < closest_champ_dist)
-        then
-            closest_champ = enemy
-            closest_champ_dist = dist
+        if dist <= settings.check_distance then
+            if closest_enemy_dist == nil or dist < closest_enemy_dist then
+                closest_enemy = enemy
+                closest_enemy_dist = dist
+            end
+            if enemy:is_elite() and
+                (closest_elite_dist == nil or dist < closest_elite_dist)
+            then
+                closest_elite = enemy
+                closest_elite_dist = dist
+            end
+            if enemy:is_champion() and
+                (closest_champ_dist == nil or dist < closest_champ_dist)
+            then
+                closest_champ = enemy
+                closest_champ_dist = dist
+            end
         end
         if enemy:is_boss() and
             (closest_boss_dist == nil or dist < closest_boss_dist)
