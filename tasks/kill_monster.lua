@@ -76,7 +76,7 @@ task.Execute = function ()
     local enemy, elite, champion, boss = get_closest_enemies()
     local target = boss or champion or elite or enemy
 
-    if target and utils.distance(local_player, target) > 2 then
+    if target and utils.distance(local_player, target) > 1 then
         BatmobilePlugin.set_target(plugin_label, target)
         BatmobilePlugin.move(plugin_label)
         task.status = status_enum['WALKING']

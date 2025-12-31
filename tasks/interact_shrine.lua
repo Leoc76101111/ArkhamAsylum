@@ -55,7 +55,7 @@ task.Execute = function ()
             task.status = status_enum['WALKING'] .. 'shrine ' .. shrine:get_skin_name()
         else
             BatmobilePlugin.clear_target(plugin_label)
-            task.status = status_enum['WALKING'] .. 'shrine' .. shrine:get_skin_name()
+            task.status = status_enum['WALKING'] .. 'shrine ' .. shrine:get_skin_name()
             orbwalker.set_clear_toggle(false)
             interact_object(shrine)
         end

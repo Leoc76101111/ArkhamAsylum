@@ -36,13 +36,13 @@ local render_pulse = function  ()
     if not local_player or not settings.enabled then return end
     local current_task = task_manager.get_current_task()
     if current_task then
-        local px, py, pz = player_position:x(), player_position:y(), player_position:z()
-        local draw_pos = vec3:new(px, py - 2, pz + 3)
+        local msg = "Arkham Asylum: " .. current_task.name
         if current_task.status ~= nil then
-            graphics.text_3d("Current Task: " .. current_task.name .. ' (' .. current_task.status .. ')', draw_pos, 14, color_white(255))
-        else
-            graphics.text_3d("Current Task: " .. current_task.name , draw_pos, 14, color_white(255))
+            msg = "Arkham Asylum: " .. current_task.name .. ' (' .. current_task.status .. ')'
         end
+        local x_pos = get_screen_width()/2 - (#msg * 5.5)
+        local y_pos = 80
+        graphics.text_2d(msg, vec2:new(x_pos, y_pos), 20, color_white(255))
     end
 end
 

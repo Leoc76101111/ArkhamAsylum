@@ -18,7 +18,7 @@ local exit_with_debounce = function (delay)
     if tracker.exit_trigger_time + settings.exit_pit_delay >= get_time_since_inject() then
         local wait_time = tracker.exit_trigger_time + settings.exit_pit_delay - get_time_since_inject()
         task.status = status_enum['WAITING'] ..
-        ' exit delay (' .. string.format("%.2f", wait_time) .. 's'
+        ' exit delay ' .. string.format("%.2f", wait_time) .. 's'
     else
         if delay and task.debounce_time ~= nil and
             task.debounce_time + settings.confirm_delay > get_time_since_inject()
