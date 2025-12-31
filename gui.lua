@@ -13,6 +13,11 @@ gui.upgrade_modes_enum = {
     PRIORITY = 2
 }
 gui.upgrade_mode = { 'Highest to lowest', 'Lowest to highest'}
+gui.exit_modes_enum = {
+    RESET = 0,
+    TELEPORT = 1,
+}
+gui.exit_mode = { 'Reset', 'Teleport'}
 gui.party_modes_enum = {
     LEADER = 0,
     FOLLOWER = 1
@@ -29,6 +34,8 @@ gui.elements = {
     pit_settings_tree = tree_node:new(1),
     pit_level = slider_int:new(1, 150, 1, get_hash(plugin_label .. '_' .. 'pit_level')),
     reset_timeout = slider_int:new(30, 900, 600, get_hash(plugin_label .. '_' .. 'reset_timeout')),
+    exit_pit_delay = slider_int:new(0, 300, 10, get_hash(plugin_label .. '_' .. 'exit_pit_delay')),
+    exit_mode = combo_box:new(0, get_hash(plugin_label .. '_' .. 'exit_mode')),
     return_for_loot = create_checkbox(true, 'return_for_loot'),
     upgrade_toggle = create_checkbox(true, 'upgrade_toggle'),
     upgrade_mode = combo_box:new(1, get_hash(plugin_label .. '_' .. 'upgrade_mode')),
@@ -41,7 +48,6 @@ gui.elements = {
     party_enabled = create_checkbox(false, 'party_enabled'),
     party_mode = combo_box:new(0, get_hash(plugin_label .. '_' .. 'party_mode')),
     -- start_pit_delay = slider_int:new(1, 300, 5, get_hash(plugin_label .. '_' .. 'start_pit_delay')),
-    exit_pit_delay = slider_int:new(0, 300, 10, get_hash(plugin_label .. '_' .. 'exit_pit_delay')),
     confirm_delay = slider_int:new(1, 300, 5, get_hash(plugin_label .. '_' .. 'confirm_delay')),
     use_magoogle_tool = create_checkbox(false, 'use_magoogle_tool'),
     follower_explore = create_checkbox(false, 'follower_explore'),
@@ -70,6 +76,7 @@ gui.render = function ()
         gui.elements.pit_level:render('Pit Level', 'Which Pit level do you want to enter?')
         gui.elements.reset_timeout:render("Reset Time (s)", "Set the time in seconds for resetting all dungeons")
         gui.elements.exit_pit_delay:render('Exit delay (s)', 'time in seconds to wait before ending pit')
+        gui.elements.exit_mode:render('Exit mode', gui.exit_mode, 'Select reset or teleport to exit pit')
         gui.elements.return_for_loot:render('Return for loot', 'return for loot after alfred run')
         gui.elements.interact_shrine:render('Enable shrine interaction (and belial eye)', 'Enable shrine interaction (and belial eye)')
         gui.elements.upgrade_toggle:render('Enable Glyph Upgrade', 'Toggle glyph upgrade on/off')

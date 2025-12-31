@@ -6,6 +6,8 @@ local settings = {
     enabled = false,
     pit_level = 1,
     reset_timeout = 600,
+    exit_mode = 0,
+    exit_pit_delay = 10,
     return_for_loot = false,
     upgrade_toggle = false,
     upgrade_mode = 1,
@@ -17,9 +19,8 @@ local settings = {
     party_enabled = false,
     party_mode = 0,
     confirm_delay = 5,
-    exit_pit_delay = 10,
     use_magoogle_tool = false,
-    check_distance = 10,
+    check_distance = 12,
 }
 
 settings.get_keybind_state = function ()
@@ -42,6 +43,8 @@ settings.update_settings = function ()
     settings.return_for_loot = gui.elements.return_for_loot:get()
     settings.pit_level = gui.elements.pit_level:get()
     settings.reset_timeout = gui.elements.reset_timeout:get()
+    settings.exit_mode = gui.elements.exit_mode:get()
+    settings.exit_pit_delay = gui.elements.exit_pit_delay:get()
     settings.upgrade_toggle = gui.elements.upgrade_toggle:get()
     settings.upgrade_mode = gui.elements.upgrade_mode:get()
     settings.upgrade_threshold = gui.elements.upgrade_threshold:get()
@@ -52,7 +55,6 @@ settings.update_settings = function ()
     settings.party_enabled = gui.elements.party_enabled:get()
     settings.party_mode = gui.elements.party_mode:get()
     settings.confirm_delay = gui.elements.confirm_delay:get()
-    settings.exit_pit_delay = gui.elements.exit_pit_delay:get()
     settings.use_magoogle_tool = gui.elements.use_magoogle_tool:get()
 end
 
