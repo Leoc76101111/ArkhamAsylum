@@ -18,6 +18,9 @@ local task = {
     portal_exit = -1
 }
 local get_portal = function ()
+    local local_player = get_local_player()
+    if not local_player then return end
+    local player_pos = get_player_position()
     local actors = actors_manager:get_ally_actors()
     for _, actor in pairs(actors) do
         if actor:is_interactable() then
@@ -26,7 +29,10 @@ local get_portal = function ()
                 actor_name == 'EGD_MSWK_World_PortalToFinalEncounter' or
                 actor_name == 'S11_EGD_MSWK_World_BelialPortalToFinalEncounter'
             then
-                return actor
+                local dist = utils.distance(player_pos, actor)
+                if dist <= settings.check_distance then
+                    return actor
+                end
             end
         end
     end
