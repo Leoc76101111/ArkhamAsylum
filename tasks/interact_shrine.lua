@@ -6,7 +6,7 @@ local tracker = require 'core.tracker'
 
 local status_enum = {
     IDLE = 'idle',
-    WALKING = 'walking to ',
+    WALKING = 'walking to shrine',
     INTERACTING = 'interacting '
 }
 local task = {
@@ -21,7 +21,7 @@ local get_closest_shrine = function ()
     for _, actor in pairs(actors) do
         if actor:is_interactable() then
             local name = actor:get_skin_name()
-            if (name:match('Shrine_DRLG') or name:match('BetrayersEyeSwitc')) and
+            if (name:match('Shrine_DRLG') or name:match('BetrayersEyeSwitch')) and
                 actor:is_interactable()
             then
                 local dist = utils.distance(local_player, actor)
@@ -52,10 +52,10 @@ task.Execute = function ()
         if utils.distance(local_player, shrine) > 2 then
             BatmobilePlugin.set_target(plugin_label, shrine)
             BatmobilePlugin.move(plugin_label)
-            task.status = status_enum['WALKING'] .. 'shrine ' .. shrine:get_skin_name()
+            task.status = status_enum['WALKING']
         else
             BatmobilePlugin.clear_target(plugin_label)
-            task.status = status_enum['WALKING'] .. 'shrine ' .. shrine:get_skin_name()
+            task.status = status_enum['WALKING']
             orbwalker.set_clear_toggle(false)
             interact_object(shrine)
         end
