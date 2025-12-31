@@ -65,6 +65,7 @@ task.Execute = function ()
     if not local_player then return end
     BatmobilePlugin.pause(plugin_label)
     BatmobilePlugin.update(plugin_label)
+    orbwalker.set_clear_toggle(true)
 
     local enemy, elite, champion, boss = get_closest_enemies()
     local target = boss or champion or elite or enemy

@@ -20,10 +20,10 @@ local main_pulse = function  ()
     settings:update_settings()
     if not local_player then return end
     if not settings.enabled or not settings.get_keybind_state() then return end
-    if orbwalker.get_orb_mode() ~= 3 then
-        orbwalker.set_clear_toggle(true)
-        orbwalker.set_block_movement(true)
-    end
+    -- if orbwalker.get_orb_mode() ~= 3 then
+    --     orbwalker.set_clear_toggle(true)
+    --     orbwalker.set_block_movement(true)
+    -- end
     if local_player:is_dead() then
         revive_at_checkpoint()
     else
