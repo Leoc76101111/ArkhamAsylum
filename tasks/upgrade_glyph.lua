@@ -24,7 +24,7 @@ local should_upgrade = function(glyph)
         task.last_attempted_glyph.glyph_name_hash == glyph.glyph_name_hash and
         task.last_attempted_glyph:get_level() == glyph:get_level()
     then
-        if task.failed_count < 10 then
+        if task.failed_count < 5 then
             task.failed_count = task.failed_count + 1
         else
             task.blacklist[glyph.glyph_name_hash] = true
@@ -34,13 +34,13 @@ local should_upgrade = function(glyph)
         task.failed_count = 0
     end
     -- rounding upgrade chance to the nearest %
+    -- can_upgrade() is bugged for lvl 45 for some reason
     local upgrade_chance = math.floor((glyph:get_upgrade_chance() + 0.005) * 100)
-    if glyph:can_upgrade() and
-        upgrade_chance >= settings.upgrade_threshold and
-        (settings.upgrade_legendary_toggle or glyph:get_level() ~= 45) and
+    if upgrade_chance >= settings.upgrade_threshold and
         task.blacklist[glyph.glyph_name_hash] == nil and
         glyph:get_level() >= settings.minimum_glyph_level and
-        glyph:get_level() <= settings.maximum_glyph_level
+        glyph:get_level() <= settings.maximum_glyph_level and
+        (glyph:can_upgrade() or (settings.upgrade_legendary_toggle and glyph:get_level() == 45))
     then
         return true
     end
@@ -113,20 +113,18 @@ task.Execute = function ()
     BatmobilePlugin.pause(plugin_label)
     local gizmo = utils.get_glyph_upgrade_gizmo()
     local glyphs = get_glyphs()
-    if settings.use_magoogle_tool and tracker.glyph_trigger_time == nil then
-        -- contact magoogle tool for boss killed
-    end
-    if glyphs ~= nil and glyphs:size() > 0 and
-        tracker.glyph_trigger_time ~= nil and
-        tracker.glyph_trigger_time + 1 < get_time_since_inject()
-    then
-        BatmobilePlugin.clear_target(plugin_label)
-        task.status = status_enum['UPGRADING']
-        upgrade_glyphs(glyphs)
-    elseif gizmo ~= nil and utils.distance(local_player, gizmo) > 2 then
+    if gizmo ~= nil and utils.distance(local_player, gizmo) > 2 then
         BatmobilePlugin.set_target(plugin_label, gizmo)
         BatmobilePlugin.move(plugin_label)
         task.status = status_enum['WALKING']
+    elseif glyphs ~= nil and glyphs:size() > 0 and
+        tracker.glyph_trigger_time ~= nil and
+        tracker.glyph_trigger_time + 1 < get_time_since_inject()
+    then
+        interact_object(gizmo)
+        BatmobilePlugin.clear_target(plugin_label)
+        task.status = status_enum['UPGRADING']
+        upgrade_glyphs(glyphs)
     elseif gizmo ~= nil and tracker.glyph_trigger_time == nil then
         tracker.glyph_trigger_time = get_time_since_inject()
         BatmobilePlugin.clear_target(plugin_label)

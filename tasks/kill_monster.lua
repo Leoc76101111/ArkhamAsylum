@@ -4,6 +4,10 @@ local utils = require "core.utils"
 local settings = require 'core.settings'
 local tracker = require 'core.tracker'
 
+local ignore_list = {
+    ['S11_BabyBelial_Apparition'] = true
+}
+
 local status_enum = {
     IDLE = 'idle',
     WALKING = 'walking to enemy',
@@ -22,6 +26,7 @@ local get_closest_enemies = function ()
     local closest_champ, closest_champ_dist
     local closest_boss, closest_boss_dist
     for _, enemy in pairs(enemies) do
+        if ignore_list[enemy:get_skin_name()] then goto continue end
         local dist = utils.distance(player_pos, enemy)
         if enemy:is_boss() and
             (closest_boss_dist == nil or dist < closest_boss_dist)
@@ -48,6 +53,7 @@ local get_closest_enemies = function ()
                 closest_champ_dist = dist
             end
         end
+        ::continue::
     end
     return closest_enemy, closest_elite, closest_champ, closest_boss
 end
@@ -78,7 +84,6 @@ task.Execute = function ()
         BatmobilePlugin.clear_target(plugin_label)
         task.status = status_enum['IDLE']
     end
-
 end
 
 return task

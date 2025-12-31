@@ -32,6 +32,7 @@ end
 
 local task_files = {
     'teleport_cerrigar',
+    'd4assistant',
     'upgrade_glyph',
     'alfred',
     'enter_pit',
