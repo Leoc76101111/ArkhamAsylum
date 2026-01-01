@@ -15,7 +15,6 @@ local task = {
     name = 'explore_pit', -- change to your choice of task name
     status = status_enum['IDLE'],
     portal_found = false,
-    reset_done = false,
     portal_exit = -1
 }
 local get_portal = function ()
@@ -50,10 +49,10 @@ task.Execute = function ()
     local portal = get_portal()
     if portal == nil then
         if task.portal_found then
-            task.status = status_enum['RESETING']
-            BatmobilePlugin.reset(plugin_label)
             task.portal_found = false
+            task.status = status_enum['RESETING']
             task.portal_exit = get_time_since_inject()
+            BatmobilePlugin.reset(plugin_label)
             return
         end
         if task.portal_exit + 1 < get_time_since_inject() then
