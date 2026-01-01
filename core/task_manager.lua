@@ -38,6 +38,7 @@ local task_files = {
     'enter_pit',
     'exit_pit',
     'follower',
+    'portal',
     'interact_shrine',
     'kill_monster',
     'explore_pit',
