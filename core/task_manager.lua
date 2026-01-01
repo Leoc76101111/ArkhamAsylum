@@ -37,6 +37,7 @@ local task_files = {
     'alfred',
     'enter_pit',
     'exit_pit',
+    'follower',
     'interact_shrine',
     'kill_monster',
     'explore_pit',

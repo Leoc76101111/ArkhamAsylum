@@ -94,14 +94,14 @@ task.Execute = function ()
     local portal = get_portal()
 
     if portal ~= nil then
-        if BatmobilePlugin.distance(plugin_label, player_pos, portal) > 2 then
+        if utils.distance(player_pos, portal) > 2 then
             BatmobilePlugin.set_target(plugin_label, portal)
             BatmobilePlugin.move(plugin_label)
             task.status = status_enum['WALKING'] .. 'portal'
         else
             enter_portal(portal)
         end
-    elseif BatmobilePlugin.distance(plugin_label, player_pos, portal_activator) > 2 then
+    elseif utils.distance(player_pos, portal_activator) > 2 then
         walk_to_activator(portal_activator)
     elseif task.interact_time == nil then
         task.interact_time = get_time_since_inject()

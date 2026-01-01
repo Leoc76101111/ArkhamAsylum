@@ -15,6 +15,7 @@ local task = {
     name = 'explore_pit', -- change to your choice of task name
     status = status_enum['IDLE'],
     portal_found = false,
+    reset_done = false,
     portal_exit = -1
 }
 local get_portal = function ()
@@ -49,7 +50,8 @@ task.Execute = function ()
     local portal = get_portal()
     if portal == nil then
         if task.portal_found then
-            BatmobilePlugin.reset()
+            task.status = status_enum['RESETING']
+            BatmobilePlugin.reset(plugin_label)
             task.portal_found = false
             task.portal_exit = get_time_since_inject()
             return
@@ -59,9 +61,6 @@ task.Execute = function ()
             BatmobilePlugin.update(plugin_label)
             BatmobilePlugin.move(plugin_label)
             task.status = status_enum['EXPLORING']
-        else
-            task.status = status_enum['RESETING']
-            BatmobilePlugin.reset()
         end
     elseif utils.distance(local_player, portal) < 2 then
         task.portal_found = true
@@ -72,7 +71,7 @@ task.Execute = function ()
         BatmobilePlugin.update(plugin_label)
         BatmobilePlugin.set_target(plugin_label, portal)
         BatmobilePlugin.move(plugin_label)
-        task.status = status_enum['MOVING']
+        task.status = status_enum['WALKING']
     end
 end
 

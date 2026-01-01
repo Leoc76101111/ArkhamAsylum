@@ -21,6 +21,7 @@ local settings = {
     confirm_delay = 5,
     use_magoogle_tool = false,
     check_distance = 12,
+    follower_explore = false,
 }
 
 settings.get_keybind_state = function ()
@@ -56,6 +57,8 @@ settings.update_settings = function ()
     settings.party_mode = gui.elements.party_mode:get()
     settings.confirm_delay = gui.elements.confirm_delay:get()
     settings.use_magoogle_tool = gui.elements.use_magoogle_tool:get()
+    settings.follower_explore = gui.elements.follower_explore:get()
+    
 end
 
 return settings
