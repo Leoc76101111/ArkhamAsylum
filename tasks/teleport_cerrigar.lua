@@ -1,6 +1,6 @@
 local plugin_label = 'arkham_asylum' -- change to your plugin name
 
-local utils = require "core.utils"
+local utils = require 'core.utils'
 
 local status_enum = {
     IDLE = 'idle',
@@ -20,7 +20,7 @@ local function teleport_with_debounce()
         task.status = status_enum['TELEPORTING']
     else
         task.status = status_enum['WAITING'] ..
-        string.format("%.2f", task.debounce_time + task.debounce_timeout - get_time_since_inject()) .. 's'
+        string.format('%.2f', task.debounce_time + task.debounce_timeout - get_time_since_inject()) .. 's'
     end
     if task.debounce_time + task.debounce_timeout > get_time_since_inject() then return end
     task.debounce_time = get_time_since_inject()
@@ -28,9 +28,10 @@ local function teleport_with_debounce()
     task.status = status_enum['TELEPORTING']
 end
 task.shouldExecute = function ()
-    return not utils.player_in_zone("Scos_Cerrigar") and
-        not utils.player_in_zone("EGD_MSWK_World_02") and
-        not utils.player_in_zone("EGD_MSWK_World_01")
+    return not utils.player_in_zone('Scos_Cerrigar') and
+        not utils.player_in_zone('EGD_MSWK_World_02') and
+        not utils.player_in_zone('EGD_MSWK_World_01') and
+        not utils.player_in_zone('[sno none]')
 end
 task.Execute = function ()
     local local_player = get_local_player()
