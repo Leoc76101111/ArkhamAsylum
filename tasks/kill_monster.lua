@@ -56,7 +56,7 @@ local get_closest_enemies = function ()
         end
         ::continue::
     end
-    return closest_enemy, closest_elite, closest_champ, closest_boss
+    return closest_enemy, closest_champ, closest_elite, closest_boss
 end
 
 task.shouldExecute = function ()
@@ -74,8 +74,8 @@ task.Execute = function ()
     BatmobilePlugin.update(plugin_label)
     orbwalker.set_clear_toggle(true)
 
-    local enemy, elite, champion, boss = get_closest_enemies()
-    local target = boss or champion or elite or enemy
+    local enemy, champion, elite, boss = get_closest_enemies()
+    local target = boss or elite or champion or enemy
 
     if target and utils.distance(local_player, target) > 1 then
         BatmobilePlugin.set_target(plugin_label, target)
