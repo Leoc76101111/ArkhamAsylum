@@ -30,8 +30,6 @@ end
 local reset = function ()
     if AlfredTheButlerPlugin then
         AlfredTheButlerPlugin.pause(plugin_label)
-    elseif PLUGIN_alfred_the_butler then
-        PLUGIN_alfred_the_butler.pause(plugin_label)
     end
     -- add more stuff here if you need to do something after alfred is done
     if floor_has_loot() then
@@ -82,11 +80,6 @@ task.Execute = function ()
     end
 end
 
-if settings.enabled and
-    (AlfredTheButlerPlugin or PLUGIN_alfred_the_butler)
-then
-    -- do an initial reset
-    reset()
-end
+if settings.enabled and AlfredTheButlerPlugin then reset() end
 
 return task
