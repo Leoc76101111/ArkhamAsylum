@@ -26,9 +26,12 @@ local exit_with_debounce = function (delay)
             task.status = status_enum['WAITING'] .. ' for confirmation'
             return
         end
+        task.debounce_time  = get_time_since_inject()
         if settings.exit_mode == 1 then
+            console.print('teleport out')
             teleport_to_waypoint(0x76D58)
         else
+            console.print('reset dungeon')
             reset_all_dungeons()
         end
     end
