@@ -27,6 +27,7 @@ local get_closest_enemies = function ()
     local closest_boss, closest_boss_dist
     for _, enemy in pairs(enemies) do
         if ignore_list[enemy:get_skin_name()] then goto continue end
+        local health = enemy:get_current_health()
         local dist = utils.distance(player_pos, enemy)
         if enemy:is_boss() and
             (closest_boss_dist == nil or dist < closest_boss_dist)
@@ -35,7 +36,7 @@ local get_closest_enemies = function ()
             closest_boss_dist = dist
         end
         local raycast_reachable = utility.is_ray_cast_walkeable(player_pos, enemy:get_position(), 0.5, dist)
-        if dist <= settings.check_distance and raycast_reachable then
+        if health > 1 and dist <= settings.check_distance and raycast_reachable then
             if closest_enemy_dist == nil or dist < closest_enemy_dist then
                 closest_enemy = enemy
                 closest_enemy_dist = dist
