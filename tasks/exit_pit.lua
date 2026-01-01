@@ -54,9 +54,10 @@ task.Execute = function ()
         exit_with_debounce(true)
     else
         if tracker.exit_trigger_time == get_time_since_inject() and
-            settings.use_magoogle_tool
+            settings.use_magoogle_tool and settings.party_enabled and
+            settings.party_mode == 1
         then
-            -- contact magoogle tool for boss killed
+            -- contact magoogle tool accepting exit
         end
         task.status = status_enum['WAITING'] .. ' for d4 assistant'
     end

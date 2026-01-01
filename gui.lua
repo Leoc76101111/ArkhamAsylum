@@ -92,7 +92,7 @@ gui.render = function ()
     if gui.elements.party_settings_tree:push('Party Settings') then
         gui.elements.party_enabled:render('enable party mode', 'enable party mode')
         if gui.elements.party_enabled:get() then
-            gui.elements.use_magoogle_tool:render('use magoogle tools', 'use magoogle tools')
+            -- gui.elements.use_magoogle_tool:render('use magoogle tools', 'use magoogle tools')
             gui.elements.party_mode:render('party mode', gui.party_mode, 'Select if your character is leader or follower')
             if gui.elements.party_mode:get() == 0 then
                 gui.elements.confirm_delay:render('Accept delay (s)', 'time in seconds to wait for accept start/reset from party member')

@@ -115,9 +115,10 @@ task.Execute = function ()
     else
         BatmobilePlugin.clear_target(plugin_label)
         if task.status ~= status_enum['WAITING'] .. ' for portal' and
-            settings.use_magoogle_tool
+            settings.use_magoogle_tool and settings.party_enabled and
+            settings.party_mode == 1
         then
-            -- contact magoogle tool for boss killed
+            -- contact magoogle tool accepting portal
         end
         task.status = status_enum['WAITING'] .. ' for portal'
     end
