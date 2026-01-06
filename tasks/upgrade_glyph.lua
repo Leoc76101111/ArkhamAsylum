@@ -24,7 +24,7 @@ local should_upgrade = function(glyph)
         task.last_attempted_glyph.glyph_name_hash == glyph.glyph_name_hash and
         task.last_attempted_glyph:get_level() == glyph:get_level()
     then
-        if glyph:get_level() == 45 or task.faled_count >= 5 then
+        if glyph:get_level() == 45 or task.failed_count >= 5 then
             task.blacklist[glyph.glyph_name_hash] = true
             task.failed_count = 0
         else
