@@ -24,11 +24,11 @@ local should_upgrade = function(glyph)
         task.last_attempted_glyph.glyph_name_hash == glyph.glyph_name_hash and
         task.last_attempted_glyph:get_level() == glyph:get_level()
     then
-        if task.failed_count < 5 then
-            task.failed_count = task.failed_count + 1
-        else
+        if glyph:get_level() == 45 or task.faled_count >= 5 then
             task.blacklist[glyph.glyph_name_hash] = true
             task.failed_count = 0
+        else
+            task.failed_count = task.failed_count + 1
         end
     else
         task.failed_count = 0
@@ -98,12 +98,6 @@ task.shouldExecute = function ()
             should_execute = not (glyphs:size() > 0 and tracker.glyph_done)
         end
     end
-    if not should_execute then
-        task.last_interaction_time = -1
-        task.blacklist = {}
-        task.last_glyph = nil
-        task.failed_count = 0
-    end
     return should_execute
 
 end
@@ -127,6 +121,10 @@ task.Execute = function ()
         upgrade_glyphs(glyphs)
     elseif gizmo ~= nil and tracker.glyph_trigger_time == nil then
         tracker.glyph_trigger_time = get_time_since_inject()
+        task.last_interaction_time = -1
+        task.blacklist = {}
+        task.last_glyph = nil
+        task.failed_count = 0
         BatmobilePlugin.clear_target(plugin_label)
         interact_object(gizmo)
         task.status = status_enum['INTERACTING']

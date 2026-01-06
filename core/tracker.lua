@@ -1,4 +1,4 @@
-local plugin_label = 'azmodan_farm'
+local plugin_label = 'arkham_asylum'
 -- kept plugin label instead of waiting for update_tracker to set it
 
 local tracker = {
