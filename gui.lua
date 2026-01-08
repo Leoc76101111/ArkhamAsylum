@@ -1,5 +1,5 @@
 local plugin_label = 'arkham_asylum'
-local plugin_version = '0.0.11'
+local plugin_version = '1.0.0'
 console.print("Lua Plugin - Arkham Asylum - Leoric - v" .. plugin_version)
 
 local gui = {}
@@ -84,9 +84,9 @@ gui.render = function ()
         if gui.elements.upgrade_toggle:get() then
             gui.elements.upgrade_mode:render('Upgrade mode', gui.upgrade_mode, 'Select how to upgrade glyphs')
             gui.elements.upgrade_threshold:render('Upgrade threshold', 'only upgrade glyph if the %% chance is greater or equal to upgrade threshold')
-            gui.elements.upgrade_legendary_toggle:render('Upgrade to legendary glyph', 'Disable this to save gem fragments')
             gui.elements.minimum_glyph_level:render('Minimum level', 'Only upgrade glyphs with level greater than or equal to this value')
             gui.elements.maximum_glyph_level:render('Maximum level', 'Only upgrade glyphs with level less than or equal to this value')
+            gui.elements.upgrade_legendary_toggle:render('Upgrade to legendary glyph', 'Disable this to save gem fragments')
         end
         gui.elements.pit_settings_tree:pop()
     end
