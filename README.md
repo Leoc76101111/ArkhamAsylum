@@ -29,9 +29,6 @@ Fully integrated and requires Alfred the butler, Batmobile and Looter.
 - Accept delay -- choose how long to wait for followers to accept start pit/reset pit notification before retrying
 - Follower explore? -- choose whether or not to explore pit as follower 
 
-### Movement spells
-- checkboxes for movement spells available to your class. requires "Use movement spells" to be toggled on.
-
 ## Changelog
 ### V1.0.0
 Initial release
