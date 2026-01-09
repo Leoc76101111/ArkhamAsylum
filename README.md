@@ -1,5 +1,5 @@
 # Arkham Asylum (Pit)
-#### V1.0.0
+#### V1.0.1
 ## Description
 Arkham Asylum is the new pit utilizing a newer (and possibly more efficient) explorer (batmobile).
 Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
