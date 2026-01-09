@@ -108,7 +108,8 @@ task.Execute = function ()
     local gizmo = utils.get_glyph_upgrade_gizmo()
     local glyphs = get_glyphs()
     if gizmo ~= nil and utils.distance(local_player, gizmo) > 2 then
-        BatmobilePlugin.set_target(plugin_label, gizmo)
+        local disable_spell = true
+        BatmobilePlugin.set_target(plugin_label, gizmo, disable_spell)
         BatmobilePlugin.move(plugin_label)
         task.status = status_enum['WALKING']
     elseif glyphs ~= nil and glyphs:size() > 0 and

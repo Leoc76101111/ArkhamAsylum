@@ -50,7 +50,8 @@ task.Execute = function ()
     local shrine = get_closest_shrine()
     if shrine ~= nil then
         if utils.distance(local_player, shrine) > 2 then
-            BatmobilePlugin.set_target(plugin_label, shrine)
+            local disable_spell = true
+            BatmobilePlugin.set_target(plugin_label, shrine, disable_spell)
             BatmobilePlugin.move(plugin_label)
             task.status = status_enum['WALKING']
         else
