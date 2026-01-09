@@ -1,5 +1,5 @@
 # Arkham Asylum (Pit)
-#### V1.0.2
+#### V1.0.3
 ## Description
 Arkham Asylum is the new pit utilizing a newer (and possibly more efficient) explorer (batmobile).
 Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
@@ -30,6 +30,10 @@ Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
 - Follower explore? -- choose whether or not to explore pit as follower 
 
 ## Changelog
+### V1.0.3
+Reduced distance for disabling batmobile's movement spell to <= 4 so that it still uses movement spell to close the gap until distance of <= 4.
+It improves movement to shrine/portal/glyphs for both evade spiritborn and other classes
+
 ### V1.0.2
 Disable batmobile's movement spell while navigating to shrine and glyph (for evade spiritborn)
 

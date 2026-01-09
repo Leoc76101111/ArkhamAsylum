@@ -57,17 +57,20 @@ task.Execute = function ()
             BatmobilePlugin.reset(plugin_label)
             return
         end
-    elseif utils.distance(local_player, portal) < 2 then
-        task.portal_found = true
-        interact_object(portal)
-        task.status = status_enum['INTERACTING']
-    else
-        local disable_spell = true
+    elseif utils.distance(local_player, portal) > 2 then
+        local disable_spell = false
+        if utils.distance(local_player, portal) <= 4 then
+            disable_spell = true
+        end
         BatmobilePlugin.pause(plugin_label)
         BatmobilePlugin.update(plugin_label)
         BatmobilePlugin.set_target(plugin_label, portal, disable_spell)
         BatmobilePlugin.move(plugin_label)
         task.status = status_enum['WALKING']
+    else
+        task.portal_found = true
+        interact_object(portal)
+        task.status = status_enum['INTERACTING']
     end
 end
 
