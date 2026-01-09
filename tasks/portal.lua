@@ -62,9 +62,10 @@ task.Execute = function ()
         interact_object(portal)
         task.status = status_enum['INTERACTING']
     else
+        local disable_spell = true
         BatmobilePlugin.pause(plugin_label)
         BatmobilePlugin.update(plugin_label)
-        BatmobilePlugin.set_target(plugin_label, portal)
+        BatmobilePlugin.set_target(plugin_label, portal, disable_spell)
         BatmobilePlugin.move(plugin_label)
         task.status = status_enum['WALKING']
     end

@@ -2,7 +2,7 @@
 #### V1.0.0
 ## Description
 Arkham Asylum is the new pit utilizing a newer (and possibly more efficient) explorer (batmobile).
-Fully integrated and requires Alfred the butler, Batmobile and Looter.
+Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
 
 ## Settings
 - Enable -- checkbox to enable or disable arkham asylum
@@ -30,6 +30,9 @@ Fully integrated and requires Alfred the butler, Batmobile and Looter.
 - Follower explore? -- choose whether or not to explore pit as follower 
 
 ## Changelog
+### V1.0.1
+Disable batmobile's movement spell while navigating to portal (for evade spiritborn)
+
 ### V1.0.0
 Initial release
 
