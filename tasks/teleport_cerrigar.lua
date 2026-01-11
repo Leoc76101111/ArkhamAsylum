@@ -26,6 +26,7 @@ local function teleport_with_debounce()
     task.debounce_time = get_time_since_inject()
     teleport_to_waypoint(0x76D58)
     task.status = status_enum['TELEPORTING']
+    BatmobilePlugin.reset(plugin_label)
 end
 task.shouldExecute = function ()
     return not utils.player_in_zone('Scos_Cerrigar') and
@@ -37,7 +38,6 @@ task.Execute = function ()
     local local_player = get_local_player()
     if not local_player then return end
     BatmobilePlugin.pause(plugin_label)
-    BatmobilePlugin.reset(plugin_label)
     teleport_with_debounce()
 end
 

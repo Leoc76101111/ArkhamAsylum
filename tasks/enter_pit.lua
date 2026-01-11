@@ -15,8 +15,7 @@ local status_enum = {
 local task = {
     name = 'enter_pit', -- change to your choice of task name
     status = status_enum['IDLE'],
-    interact_time = nil,
-    debounce_time = nil
+    debounce_time = -1
 }
 local get_portal_activator = function ()
     local actors = actors_manager:get_ally_actors()
@@ -46,19 +45,16 @@ end
 local open_portal = function (delay)
     task.status = status_enum['OPENING'] .. tostring(settings.pit_level)
     local portal_activator = get_portal_activator()
-    if portal_activator.get_position then
+    if portal_activator.get_position == nil then return end
+    if not loot_manager:is_in_vendor_screen() then
         interact_object(portal_activator)
-        if task.interact_time + 1 < get_time_since_inject() then
-            if delay and task.debounce_time ~= nil and
-                task.debounce_time + settings.confirm_delay > get_time_since_inject()
-            then
-                task.status = status_enum['WAITING'] .. ' for confirmation'
-                return
-            end
-            task.debounce_time = get_time_since_inject()
-            local pit_address = pit_levels[settings.pit_level]
-            utility.open_pit_portal(pit_address)
-        end
+    elseif delay and task.debounce_time + settings.confirm_delay > get_time_since_inject() then
+        task.status = status_enum['WAITING'] .. 'for confirmation'
+        return
+    else
+        task.debounce_time = get_time_since_inject()
+        local pit_address = pit_levels[settings.pit_level]
+        utility.open_pit_portal(pit_address)
     end
 end
 local enter_portal = function (portal)
@@ -69,7 +65,6 @@ local enter_portal = function (portal)
     tracker.glyph_trigger_time = nil
     tracker.glyph_done = false
     tracker.boss_kill_time = nil
-    task.interact_time = nil
     task.status = status_enum['ENTERING'] .. tostring(settings.pit_level)
 end
 local walk_to_activator = function (activator)
@@ -79,9 +74,6 @@ local walk_to_activator = function (activator)
 end
 task.shouldExecute = function ()
     local should_execute =  utils.player_in_zone("Scos_Cerrigar")
-    if not should_execute then
-        task.interact_time = nil
-    end
     return should_execute
 end
 task.Execute = function ()
@@ -103,9 +95,6 @@ task.Execute = function ()
         end
     elseif utils.distance(player_pos, portal_activator) > 2 then
         walk_to_activator(portal_activator)
-    elseif task.interact_time == nil then
-        task.interact_time = get_time_since_inject()
-        task.debounce_time = nil
     elseif not settings.party_enabled then
         BatmobilePlugin.clear_target(plugin_label)
         open_portal(false)
@@ -114,13 +103,13 @@ task.Execute = function ()
         open_portal(true)
     else
         BatmobilePlugin.clear_target(plugin_label)
-        if task.status ~= status_enum['WAITING'] .. ' for portal' and
+        if task.status ~= status_enum['WAITING'] .. 'for portal' and
             settings.use_magoogle_tool and settings.party_enabled and
             settings.party_mode == 1
         then
             -- contact magoogle tool accepting portal
         end
-        task.status = status_enum['WAITING'] .. ' for portal'
+        task.status = status_enum['WAITING'] .. 'for portal'
     end
 end
 
