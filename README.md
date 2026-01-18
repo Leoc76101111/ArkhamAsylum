@@ -35,6 +35,7 @@ Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
 ## Changelog
 ### V1.0.6
 Added option to set batmobile priority
+Set portal priority to be higher than follower afk (so that follower still goes in portal)
 
 ### V1.0.5
 fix missing betrayer eye due to blizzard making it not interactable
