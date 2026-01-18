@@ -1,5 +1,5 @@
 # Arkham Asylum (Pit)
-#### V1.0.5
+#### V1.0.6
 ## Description
 Arkham Asylum is the new pit utilizing a newer (and possibly more efficient) explorer (batmobile).
 Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
@@ -10,6 +10,9 @@ Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
     - Toggle keybind - toggle pause/resume
 
 ### Pit Settings
+- Batmobile priority -- set batmobile's exploration priority
+    - DIRECTION -- batmobile will priortize exploring the same direction
+    - DISTANCE -- batmobile will prioritize exploring furthest distance from start. May result in more backtracking
 - Pit level -- which pit level to run
 - Reset time -- how long in seconds to give up on current pit
 - Exit delay -- how long to wait in seconds before initiating exit when all task are done or when reset time is up
@@ -30,6 +33,9 @@ Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
 - Follower explore? -- choose whether or not to explore pit as follower 
 
 ## Changelog
+### V1.0.6
+Added option to set batmobile priority
+
 ### V1.0.5
 fix missing betrayer eye due to blizzard making it not interactable
 

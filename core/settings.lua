@@ -22,6 +22,7 @@ local settings = {
     use_magoogle_tool = false,
     check_distance = 12,
     follower_explore = false,
+    batmobile_priority = 'distance',
 }
 
 settings.get_keybind_state = function ()
@@ -58,6 +59,7 @@ settings.update_settings = function ()
     settings.confirm_delay = gui.elements.confirm_delay:get()
     settings.use_magoogle_tool = gui.elements.use_magoogle_tool:get()
     settings.follower_explore = gui.elements.follower_explore:get()
+    settings.batmobile_priority = gui.batmobile_priority[gui.elements.batmobile_priority:get()+1]
     
 end
 

@@ -1,5 +1,5 @@
 local plugin_label = 'arkham_asylum'
-local plugin_version = '1.0.5'
+local plugin_version = '1.0.6'
 console.print("Lua Plugin - Arkham Asylum - Leoric - v" .. plugin_version)
 
 local gui = {}
@@ -24,6 +24,14 @@ gui.party_modes_enum = {
     FOLLOWER = 1
 }
 gui.party_mode = { 'Leader', 'Follower'}
+gui.batmobile_priority = {
+    'direction',
+    'distance'
+}
+gui.batmobile_priority_enum = {
+    DIRECTION = 0,
+    DISTANCE = 1
+}
 
 gui.plugin_label = plugin_label
 gui.plugin_version = plugin_version
@@ -33,6 +41,7 @@ gui.elements = {
     use_keybind = create_checkbox(false, 'use_keybind'),
     keybind_toggle = keybind:new(0x0A, true, get_hash(plugin_label .. '_keybind_toggle' )),
     pit_settings_tree = tree_node:new(1),
+    batmobile_priority = combo_box:new(0, get_hash(plugin_label .. '_' .. 'batmobile_priority')),
     pit_level = slider_int:new(1, 150, 1, get_hash(plugin_label .. '_' .. 'pit_level')),
     reset_timeout = slider_int:new(30, 900, 600, get_hash(plugin_label .. '_' .. 'reset_timeout')),
     exit_pit_delay = slider_int:new(0, 300, 10, get_hash(plugin_label .. '_' .. 'exit_pit_delay')),
@@ -74,6 +83,12 @@ gui.render = function ()
         gui.elements.keybind_toggle:render('Toggle Keybind', 'Toggle the bot for quick enable')
     end
     if gui.elements.pit_settings_tree:push('Pit Settings') then
+        gui.elements.batmobile_priority:render('Batmobile priority', gui.batmobile_priority, 'Select whether to priortize direction or distance while exploring')
+        if gui.elements.batmobile_priority:get() == 1 then
+            render_menu_header('[EXPERIMENTAL] Priortizing distance will use more processing power. ' ..
+                'Depending on layout, might result in more backtracking.')
+
+        end
         gui.elements.pit_level:render('Pit Level', 'Which Pit level do you want to enter?')
         gui.elements.reset_timeout:render("Reset Time (s)", "Set the time in seconds for resetting all dungeons")
         gui.elements.exit_pit_delay:render('Exit delay (s)', 'time in seconds to wait before ending pit')
