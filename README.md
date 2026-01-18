@@ -1,5 +1,5 @@
 # Arkham Asylum (Pit)
-#### V1.0.4
+#### V1.0.5
 ## Description
 Arkham Asylum is the new pit utilizing a newer (and possibly more efficient) explorer (batmobile).
 Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
@@ -30,6 +30,9 @@ Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
 - Follower explore? -- choose whether or not to explore pit as follower 
 
 ## Changelog
+### V1.0.5
+fix missing betrayer eye due to blizzard making it not interactable
+
 ### V1.0.4
 optimized enter pit
 removed raycast check for monsters

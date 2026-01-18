@@ -19,16 +19,14 @@ local get_closest_shrine = function ()
     local actors = actors_manager:get_ally_actors()
     local closest_shrine, closest_dist
     for _, actor in pairs(actors) do
-        if actor:is_interactable() then
-            local name = actor:get_skin_name()
-            if (name:match('Shrine_DRLG') or name:match('BetrayersEyeSwitch')) and
-                actor:is_interactable()
-            then
-                local dist = utils.distance(local_player, actor)
-                if dist < settings.check_distance and (closest_dist == nil or dist < closest_dist) then
-                    closest_dist = dist
-                    closest_shrine = actor
-                end
+        local name = actor:get_skin_name()
+        if (name:match('Shrine_DRLG') and actor:is_interactable()) or
+            name:match('BetrayersEyeSwitch')
+        then
+            local dist = utils.distance(local_player, actor)
+            if dist < settings.check_distance and (closest_dist == nil or dist < closest_dist) then
+                closest_dist = dist
+                closest_shrine = actor
             end
         end
     end
