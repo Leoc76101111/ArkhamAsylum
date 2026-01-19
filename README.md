@@ -1,5 +1,5 @@
 # Arkham Asylum (Pit)
-#### V1.0.6
+#### V1.0.7
 ## Description
 Arkham Asylum is the new pit utilizing a newer (and possibly more efficient) explorer (batmobile).
 Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
@@ -19,6 +19,7 @@ Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
 - Exit mode -- choose to either exit by reset dungeon or teleport out
 - Return for loot -- checkbox to return for loot after alfred is done or abandon remaining loot on floor to start new pit
 - Enable shrine interaction -- checkbox to interact with shrine while exploring pit
+- Enable seasonal interaction -- checkbox to interact with belial eye for season 11 while exploring pit
 - Enable glyph upgrade -- checkbox to choose to upgrade glyphs or not
 - Upgrade mode -- choose between upgrading higest glyph first or lowest glyphs first
 - Upgrade threshold -- only upgrade glyph have have upgrade % > than threshold
@@ -33,6 +34,9 @@ Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
 - Follower explore? -- choose whether or not to explore pit as follower 
 
 ## Changelog
+### V1.0.7
+Split out shrine interaction and seasonal interaction
+
 ### V1.0.6
 Added option to set batmobile priority
 Set portal priority to be higher than follower afk (so that follower still goes in portal)

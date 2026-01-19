@@ -20,8 +20,8 @@ local get_closest_shrine = function ()
     local closest_shrine, closest_dist
     for _, actor in pairs(actors) do
         local name = actor:get_skin_name()
-        if (name:match('Shrine_DRLG') and actor:is_interactable()) or
-            name:match('BetrayersEyeSwitch')
+        if (name:match('Shrine_DRLG') and actor:is_interactable() and settings.interact_shrine) or
+            (name:match('BetrayersEyeSwitch') and settings.interact_seasonal)
         then
             local dist = utils.distance(local_player, actor)
             if dist < settings.check_distance and (closest_dist == nil or dist < closest_dist) then
@@ -34,7 +34,7 @@ local get_closest_shrine = function ()
 end
 
 task.shouldExecute = function ()
-    return settings.interact_shrine and
+    return (settings.interact_shrine or settings.interact_seasonal) and
         get_closest_shrine() ~= nil and
         (utils.player_in_zone("EGD_MSWK_World_02") or
         utils.player_in_zone("EGD_MSWK_World_01"))

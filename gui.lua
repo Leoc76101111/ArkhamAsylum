@@ -1,5 +1,5 @@
 local plugin_label = 'arkham_asylum'
-local plugin_version = '1.0.6'
+local plugin_version = '1.0.7'
 console.print("Lua Plugin - Arkham Asylum - Leoric - v" .. plugin_version)
 
 local gui = {}
@@ -54,6 +54,7 @@ gui.elements = {
     minimum_glyph_level = slider_int:new(1, 100, 1, get_hash(plugin_label .. '_' .. 'minimum_glyph_level')),
     maximum_glyph_level = slider_int:new(1, 100, 100, get_hash(plugin_label .. '_' .. 'maximum_glyph_level')),
     interact_shrine = create_checkbox(true, 'interact_shrine'),
+    interact_seasonal = create_checkbox(true, 'interact_seasonal'),
     party_settings_tree = tree_node:new(1),
     party_enabled = create_checkbox(false, 'party_enabled'),
     party_mode = combo_box:new(0, get_hash(plugin_label .. '_' .. 'party_mode')),
@@ -94,7 +95,8 @@ gui.render = function ()
         gui.elements.exit_pit_delay:render('Exit delay (s)', 'time in seconds to wait before ending pit')
         gui.elements.exit_mode:render('Exit mode', gui.exit_mode, 'Select reset or teleport to exit pit')
         gui.elements.return_for_loot:render('Return for loot', 'return for loot after alfred run')
-        gui.elements.interact_shrine:render('Enable shrine interaction (and belial eye)', 'Enable shrine interaction (and belial eye)')
+        gui.elements.interact_shrine:render('Enable shrine interaction', 'Enable shrine interaction ')
+        gui.elements.interact_seasonal:render('Enable seasonal interaction (belial eye)', 'Enable seasonal interaction (belial eye)')
         gui.elements.upgrade_toggle:render('Enable Glyph Upgrade', 'Toggle glyph upgrade on/off')
         if gui.elements.upgrade_toggle:get() then
             gui.elements.upgrade_mode:render('Upgrade mode', gui.upgrade_mode, 'Select how to upgrade glyphs')
