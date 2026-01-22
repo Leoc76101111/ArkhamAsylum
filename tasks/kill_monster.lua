@@ -60,8 +60,7 @@ end
 
 task.shouldExecute = function ()
     local enemy, elite, champion, boss = get_closest_enemies()
-    return settings.interact_shrine and
-        (enemy ~= nil or elite ~= nil or
+    return (enemy ~= nil or elite ~= nil or
         champion ~= nil or boss ~= nil) and
         (utils.player_in_zone("EGD_MSWK_World_02") or
         utils.player_in_zone("EGD_MSWK_World_01"))

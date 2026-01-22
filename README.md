@@ -1,5 +1,5 @@
 # Arkham Asylum (Pit)
-#### V1.0.7
+#### V1.0.8
 ## Description
 Arkham Asylum is the new pit utilizing a newer (and possibly more efficient) explorer (batmobile).
 Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
@@ -34,6 +34,9 @@ Fully integrated and requires Alfred the butler, Batmobile and Looteer v2.
 - Follower explore? -- choose whether or not to explore pit as follower 
 
 ## Changelog
+### V1.0.8
+Fix bug where kill_monsters only executes when interact shrine is selected
+
 ### V1.0.7
 Split out shrine interaction and seasonal interaction
 
